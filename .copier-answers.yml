@@ -1,0 +1,16 @@
+# Changes here will be overwritten by Copier
+_commit: v0.5.0
+_src_path: https://github.com/linkml/linkml-project-copier
+add_example: true
+copyright_year: '2026'
+email: chris.hough@terranexus.com.au
+existing_license_file: ''
+full_name: Chris Hough
+gh_action_docs_preview: true
+gh_action_pypi: true
+github_org: Terranexus
+license: Apache-2.0
+project_description: A template of the linkml scaffold project
+project_name: scaffold_linkml_template
+project_slug: scaffold_linkml_template
+
