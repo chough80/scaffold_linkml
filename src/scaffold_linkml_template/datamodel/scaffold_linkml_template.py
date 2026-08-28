@@ -1,5 +1,5 @@
 # Auto generated from scaffold_linkml_template.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-28T17:06:41
+# Generation date: 2026-08-28T17:09:06
 # Schema: scaffold_linkml_template
 #
 # id: https://w3id.org/Terranexus/scaffold_linkml_template
