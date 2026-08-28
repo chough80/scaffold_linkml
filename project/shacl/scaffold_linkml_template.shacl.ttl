@@ -1,0 +1,88 @@
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scaffold_linkml_template: <https://w3id.org/Terranexus/scaffold_linkml_template/> .
+@prefix schema1: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+schema1:Thing a sh:NodeShape ;
+    rdfs:comment "A generic grouping for any identifiable entity" ;
+    sh:closed true ;
+    sh:ignoredProperties ( scaffold_linkml_template:age_in_years schema1:email schema1:birthDate scaffold_linkml_template:vital_status rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path schema1:identifier ] ;
+    sh:targetClass schema1:Thing .
+
+scaffold_linkml_template:PersonCollection a sh:NodeShape ;
+    rdfs:comment "A holder for Person objects" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class scaffold_linkml_template:Person ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path scaffold_linkml_template:people ] ;
+    sh:targetClass scaffold_linkml_template:PersonCollection .
+
+scaffold_linkml_template:Person a sh:NodeShape ;
+    rdfs:comment "Represents a Person" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "living or dead status" ;
+            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path scaffold_linkml_template:vital_status ],
+        [ sh:datatype xsd:string ;
+            sh:description "The main email address of a person" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:email ;
+            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date on which a person is born" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:birthDate ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path schema1:name ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Number of years since birth" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path scaffold_linkml_template:age_in_years ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path schema1:description ] ;
+    sh:targetClass scaffold_linkml_template:Person .
+

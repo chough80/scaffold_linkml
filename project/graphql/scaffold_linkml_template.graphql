@@ -1,0 +1,30 @@
+# metamodel_version: 1.11.0
+enum PersonStatus
+  {
+    ALIVE
+    DEAD
+    UNKNOWN
+  }
+
+type NamedThing
+  {
+    id: String!
+    name: String
+    description: String
+  }
+
+type Person
+  {
+    id: String!
+    name: String
+    description: String
+    primaryEmail: String
+    birthDate: String
+    ageInYears: Int
+    vitalStatus: PersonStatus
+  }
+
+type PersonCollection
+  {
+    people: [Person]
+  }

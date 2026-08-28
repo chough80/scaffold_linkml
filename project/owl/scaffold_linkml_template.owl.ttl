@@ -1,0 +1,174 @@
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scaffold_linkml_template: <https://w3id.org/Terranexus/scaffold_linkml_template/> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/Terranexus/scaffold_linkml_template.owl.ttl> a owl:Ontology ;
+    rdfs:label "scaffold_linkml_template" ;
+    dcterms:license "Apache-2.0" ;
+    dcterms:title "scaffold_linkml_template" ;
+    rdfs:seeAlso <https://Terranexus.github.io/scaffold_linkml_template> ;
+    skos:definition "A template of the linkml scaffold project" .
+
+scaffold_linkml_template:PersonCollection a owl:Class ;
+    rdfs:label "PersonCollection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty scaffold_linkml_template:people ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom scaffold_linkml_template:Person ;
+            owl:onProperty scaffold_linkml_template:people ] ;
+    skos:definition "A holder for Person objects" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:NamedThing a owl:Class ;
+    rdfs:label "NamedThing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty scaffold_linkml_template:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty scaffold_linkml_template:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty scaffold_linkml_template:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty scaffold_linkml_template:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty scaffold_linkml_template:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty scaffold_linkml_template:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty scaffold_linkml_template:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty scaffold_linkml_template:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty scaffold_linkml_template:id ] ;
+    skos:definition "A generic grouping for any identifiable entity" ;
+    skos:exactMatch schema1:Thing ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty scaffold_linkml_template:birth_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty scaffold_linkml_template:primary_email ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty scaffold_linkml_template:birth_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty scaffold_linkml_template:vital_status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom scaffold_linkml_template:PersonStatus ;
+            owl:onProperty scaffold_linkml_template:vital_status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty scaffold_linkml_template:age_in_years ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty scaffold_linkml_template:age_in_years ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty scaffold_linkml_template:primary_email ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty scaffold_linkml_template:vital_status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:onDatatype xsd:string ;
+                    owl:withRestrictions ( [ xsd:pattern "^\\S+@[\\S+\\.]+\\S+" ] ) ] ;
+            owl:onProperty scaffold_linkml_template:primary_email ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty scaffold_linkml_template:age_in_years ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty scaffold_linkml_template:birth_date ],
+        scaffold_linkml_template:NamedThing ;
+    skos:definition "Represents a Person" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+PATO:0001421 a owl:Class ;
+    rdfs:label "ALIVE" ;
+    rdfs:subClassOf scaffold_linkml_template:PersonStatus ;
+    skos:definition "the person is living" .
+
+PATO:0001422 a owl:Class ;
+    rdfs:label "DEAD" ;
+    rdfs:subClassOf scaffold_linkml_template:PersonStatus ;
+    skos:definition "the person is deceased" .
+
+<https://w3id.org/Terranexus/scaffold_linkml_template/PersonStatus#UNKNOWN> a owl:Class ;
+    rdfs:label "UNKNOWN" ;
+    rdfs:subClassOf scaffold_linkml_template:PersonStatus ;
+    skos:definition "the vital status is not known" .
+
+scaffold_linkml_template:people a owl:ObjectProperty ;
+    rdfs:label "people" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:age_in_years a owl:DatatypeProperty ;
+    rdfs:label "age_in_years" ;
+    rdfs:range xsd:integer ;
+    skos:definition "Number of years since birth" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:birth_date a owl:DatatypeProperty ;
+    rdfs:label "birth_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date on which a person is born" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:description a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    skos:definition "A human-readable description for a thing" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:id a owl:DatatypeProperty ;
+    rdfs:label "id" ;
+    rdfs:range xsd:anyURI ;
+    skos:definition "A unique identifier for a thing" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:name a owl:DatatypeProperty ;
+    rdfs:label "name" ;
+    skos:definition "A human-readable name for a thing" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:primary_email a owl:DatatypeProperty ;
+    rdfs:label "primary_email" ;
+    skos:definition "The main email address of a person" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:vital_status a owl:ObjectProperty ;
+    rdfs:label "vital_status" ;
+    rdfs:range scaffold_linkml_template:PersonStatus ;
+    skos:definition "living or dead status" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> .
+
+scaffold_linkml_template:PersonStatus a owl:Class ;
+    rdfs:label "PersonStatus" ;
+    owl:unionOf ( PATO:0001421 PATO:0001422 <https://w3id.org/Terranexus/scaffold_linkml_template/PersonStatus#UNKNOWN> ) ;
+    skos:definition "The vital status of a person" ;
+    skos:inScheme <https://w3id.org/Terranexus/scaffold_linkml_template> ;
+    linkml:permissible_values PATO:0001421,
+        PATO:0001422,
+        <https://w3id.org/Terranexus/scaffold_linkml_template/PersonStatus#UNKNOWN> .
+
+

@@ -1,0 +1,11 @@
+{
+   "PATO": "http://purl.obolibrary.org/obo/PATO_",
+   "biolink": "https://w3id.org/biolink/vocab/",
+   "example": "http://www.example.org/rdf#",
+   "linkml": "https://w3id.org/linkml/",
+   "scaffold_linkml_template": "https://w3id.org/Terranexus/scaffold_linkml_template/",
+   "schema": "http://schema.org/",
+   "NamedThing": {
+      "@id": "schema:Thing"
+   }
+}

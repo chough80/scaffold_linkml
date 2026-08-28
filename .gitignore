@@ -5,8 +5,9 @@
 
 # Derived schemas, generated from the schema.yaml
 tmp/
-project/
-!project/README.md
+# Included in git 28th August 2026 for demo
+#project/
+#!project/README.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

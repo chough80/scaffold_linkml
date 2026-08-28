@@ -1,0 +1,135 @@
+{
+    "$defs": {
+        "NamedThing": {
+            "additionalProperties": false,
+            "description": "A generic grouping for any identifiable entity",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "NamedThing",
+            "type": "object"
+        },
+        "Person": {
+            "additionalProperties": false,
+            "description": "Represents a Person",
+            "properties": {
+                "age_in_years": {
+                    "description": "Number of years since birth",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "birth_date": {
+                    "description": "Date on which a person is born",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "primary_email": {
+                    "description": "The main email address of a person",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "vital_status": {
+                    "$ref": "#/$defs/PersonStatus",
+                    "description": "living or dead status"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Person",
+            "type": "object"
+        },
+        "PersonCollection": {
+            "additionalProperties": false,
+            "description": "A holder for Person objects",
+            "properties": {
+                "people": {
+                    "items": {
+                        "$ref": "#/$defs/Person"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "PersonCollection",
+            "type": "object"
+        },
+        "PersonStatus": {
+            "description": "The vital status of a person",
+            "enum": [
+                "ALIVE",
+                "DEAD",
+                "UNKNOWN"
+            ],
+            "title": "PersonStatus",
+            "type": "string"
+        }
+    },
+    "$id": "https://w3id.org/Terranexus/scaffold_linkml_template",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "description": "A holder for Person objects",
+    "metamodel_version": "1.11.0",
+    "properties": {
+        "people": {
+            "items": {
+                "$ref": "#/$defs/Person"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        }
+    },
+    "title": "scaffold_linkml_template",
+    "type": "object",
+    "version": null
+}
